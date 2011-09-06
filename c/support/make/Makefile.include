@@ -1,0 +1,47 @@
+# -*- makefile -*-
+# Includes for hub applications.  Can manipulate these so that
+# applications are built with a consistent set of compiler flags.
+#
+# Also controls cross compiling.
+#
+# @author Stephen Dawson-Haggerty <sdh@peoplepowerco.com>
+
+# global settings
+
+# Yvan: for some reason, SIGIO signals are not generated with the -O2 or -Os option
+CFLAGS = -Os
+
+LIBXML2_VERSION=libxml2-2.7.8
+LIBCURL_VERSION=curl-7.21.7
+OPENSSL_VERSION=openssl-1.0.0d
+CJSON_VERSION=cJSON
+
+ifeq ($(HOST), mips-linux)
+	# Build for a mips processor
+	# CFLAGS+=-Iopt/mips-linux/include
+	# LIBXML2=-lm /opt/mips-linux/lib/libxml2.a
+	# LDFLAGS=-static
+	# LDFLAGS+=-L/opt/mips-linux/lib/ 
+	# OPENSSL=-L$(HUB_ROOT)/AP/openssl-0.9.8b -Xlinker '-rpath-link' -Xlinker $(HUB_ROOT)/AP/openssl-0.9.8b -lssl -lcrypto
+	# CURL=-lcrypt -lssl -lcurl
+	# LIBXML2=-lxml2
+	
+	CFLAGS+=-DSYSTEM_PATHS 
+	CC=mips-linux-gcc
+	CPP=mips-linux-g++
+	AR = mips-linux-ar
+	STRIP=mips-linux-strip
+	MIPS = 1
+	export HARDWARE_PLATFORM = MIPS
+	
+else
+	# Build for this PC
+	CC = gcc
+	CPP = g++
+	AR = ar
+	STRIP=strip
+	INTEL = 0
+	CFLAGS+=-g3
+	export HARDWARE_PLATFORM = INTEL
+endif
+

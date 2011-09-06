@@ -1,0 +1,9 @@
+This directory contains header files to be included by many other .c files
+in the system.
+
+The most up-to-date library header files are automatically copied into this 
+directory after the lib directory is compiled.  Typically, applications' 
+Makefiles are setup to compile the lib directory before compiling the
+application itself.  It is recommended that these library header files 
+not be committed to the repository since they are already being tracked 
+within the /c/lib directories.

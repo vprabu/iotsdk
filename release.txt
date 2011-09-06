@@ -1,0 +1,11 @@
+
+UPDATES:
+* Updated the proxy client to emulate a virtual powerstrip, controllable through the cloud / mobile UI's
+* Created XML parsers to receive commands from the People Power Energy Services Platform
+* Created XML generators implementing the People Power Energy Services Platform API
+* Created a proxy client app to connect to the local proxy server through the socket
+* Created a proxy server app to expose the proxy locally through a socket
+* Added a proxy to communicate with cloud servers over a persistent connection
+* Created the Internet of Things SDK. C is the first language target
+
+

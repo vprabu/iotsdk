@@ -1,0 +1,11 @@
+This directory contains libraries used by modules within our 
+'Internet of Things' device framework.  These libraries should compile
+automatically when you compile a test or application, but you may run
+make to create them manually.
+
+After creating the libraries, be sure to place the .so's in a location
+where they will be loaded by your system when you run the application.  
+One way to do this is to create a symlink in your primary lib directory:
+
+sudo ln -s -f ${SDKDIR}/c/lib/libexample.so /usr/lib/libexample.so
+

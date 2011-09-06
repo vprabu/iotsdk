@@ -1,0 +1,18 @@
+# Directories named build
+build/
+# Unit test build logs
+utbuild.log
+# Any compiled python files
+*.pyc
+*.pyo
+# Any compiled C files
+*.o
+*.so
+*.a
+# Any unit test results
+unittest*
+# Any compiled Java files
+*.class
+*.jar
+*.war
+

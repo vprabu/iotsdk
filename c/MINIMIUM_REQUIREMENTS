@@ -1,0 +1,7 @@
+
+Requirements:
+* Pthreads support
+* libxml2 (found in ./lib/3rdparty) for XML parsing, compiled with thread support
+* libcurl (found in ./lib/3rdparty) for HTTP support
+* openssl (found in ./lib/3rdparty) for SSL support
+

@@ -1,0 +1,4 @@
+# Ignore all configuration files that aren't forcefully checked in
+proxy.conf
+
+
