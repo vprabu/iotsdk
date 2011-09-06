@@ -12,6 +12,11 @@ SOURCES = $(SOURCE_NAME).c
 RESULT_DIR = ./
 CFLAGS += -I../../include
 
+# Include 3rd party libraries
+CFLAGS += -I../3rdparty/${LIBXML2_VERSION}/include
+CFLAGS += -I../3rdparty/${LIBCURL_VERSION}/include
+CFLAGS += -I../3rdparty/${OPENSSL_VERSION}/include
+
 ifneq ($(HOST), mips-linux)
 CFLAGS+= -g -pg
 endif
