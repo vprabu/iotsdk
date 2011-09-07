@@ -187,6 +187,9 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  SYSLOG_INFO("*************** SHUTTING DOWN PROXY ***************");
+  printf("Done!\n");
+
   xmlCleanupParser();
   xmlMemoryDump();
 
@@ -211,6 +214,12 @@ void _proxyserver_listener(const char *message, int len) {
   for(i = 0; i < proxyclientmanager_size(); i++) {
     client = proxyclientmanager_get(i);
     if(client->inUse) {
+
+      /*
+       * TODO Known bug here where if the client->fd is closed because the
+       * developer kills that client or the client crashes, this write() will
+       * cause the proxyserver application to exit
+       */
       if (write(client->fd, message, len) < 0) {
         SYSLOG_ERR("ERROR writing to socket %d, closing socket", client->fd);
         proxyclientmanager_remove(client->fd);
