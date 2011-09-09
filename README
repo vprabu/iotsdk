@@ -1,0 +1,15 @@
+"IOT" stands for the "Internet of Things".
+
+This Software Development Kit is a set of tools and applications to connect
+things to the Internet, and is sharpened to connect to People Power's
+cloud servers to expose devices in the physical world to people through
+the Internet.
+
+The C-based implementation of this IOTSDK exists now. This is designed
+to run mostly on Linux and embedded-Linux systems which are typically found
+connecting things to the Internet today.  We placed this implementation in a 
+c/ directory to keep it separate from other languages which may implement
+the same behavior.
+
+http://www.peoplepowerco.com for more details on how to connect your things to 
+the Internet.

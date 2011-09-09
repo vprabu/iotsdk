@@ -1,0 +1,11 @@
+This 'proxyserver' application creates a proxy instance (iot/proxy) and opens a 
+socket on a known port (DEFAULT_PROXY_PORT) which allows multiple external
+agent applications to all share the same proxy instance.  
+
+Users of the proxyserver can use the clientsocket component found in iot/client 
+to connect to the proxyserver's open socket.
+
+BEFORE USING...
+You must activate your proxyserver using the command: proxyserver -a [key],
+where the [key] is given to you by People Power Company to bind your
+physical device with your username.

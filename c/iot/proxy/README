@@ -1,0 +1,4 @@
+This proxy is the main component that forms a persistent HTTP connection
+with a cloud server.  It doesn't care what data is flowing through it,
+but it does wrap that data in proper XML tags for communication with the
+server using People Power's Device API.

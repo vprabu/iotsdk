@@ -1,0 +1,5 @@
+This xml directory is responsible for implementing a parser and a generator
+for People Power's Device API, turning that XML into a series of 
+functions to call from an application so the developer does not need
+to understand the details of the XML API.
+

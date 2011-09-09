@@ -1,0 +1,13 @@
+The clientsocket component is a tool that a standalone agent application
+can use to connect to a proxyserver application.
+
+If this component is compiled into your application, you must implement
+the following command:
+
+  void application_receive(const char *msg, int len);
+
+Typically, as you can see in the exampleagent application, the message is
+passed onto an XML parser which interprets People Power's XML API
+and turns the message into a series of command_t's to be executed
+by the user's application.
+
