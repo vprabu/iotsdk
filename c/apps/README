@@ -1,9 +1,16 @@
 This directory contains stand-alone applications to compile and run.
 
-One example is the proxyserver and proxyclient.  The proxyserver will
-create an instance of the proxy and listen on a socket on a known port for
-client connections.  Proxyclient instances then connect to the proxyserver's
-socket to send and receive messages from the server.  This allows one
-or multiple proxyclients to execute stand-alone without needing to be 
-compiled together as a single monolithic application.
+The proxyserver is one of the main applications. It compiles together with
+the Internet of Things Proxy (iot/proxy) and opens a socket.  You must
+activate your proxy with a valid key before it will interact with the 
+cloud servers. The activation process links your username to the physical
+platform that is hosting the proxyserver.
+
+Other agents exist as standalone applications which connect to the
+proxyserver's open socket.  These agents all share the single Internet
+connection to the server.  There is a template called "exampleagent" which
+implements a made-up smart outlet.
+
+Contact People Power (http://www.peoplepowerco.com) for details on the key words
+you would use to send measurements and receive commands from the cloud servers.
 
