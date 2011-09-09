@@ -1,5 +1,6 @@
 
 UPDATES:
+* C: Added an exampleagent application for developers to use as a template
 * C: Updated the proxy client to emulate a virtual powerstrip, controllable through the cloud / mobile UI's
 * C: Created XML parsers to receive commands from the People Power Energy Services Platform
 * C: Created XML generators implementing the People Power Energy Services Platform API
