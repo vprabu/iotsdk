@@ -1,0 +1,11 @@
+
+THIS IS EXAMPLE SOURCE CODE ONLY!  It doesn't actually do anything.
+But you can look at it and modify it for to build your own agents that
+connect physical devices to cloud services through some internet-connected
+access point.
+
+Read the comments at the top of gadgetagent.c for more details on how you can
+modify this code to build your own agent.  
+
+Also, the Makefile uses the environment variable ${IOTSDK} to define where
+the iotsdk directory lives on your machine.
