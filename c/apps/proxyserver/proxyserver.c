@@ -95,6 +95,9 @@ int main(int argc, char *argv[]) {
   // Ignore the SIGCHLD signal to get rid of zombies
   signal(SIGCHLD, SIG_IGN);
 
+  // Don't crash when we write to a broken pipe
+  signal(SIGPIPE, SIG_IGN);
+
   // Parse the command line arguments
   proxycli_parse(argc, argv);
 
@@ -214,12 +217,6 @@ void _proxyserver_listener(const char *message, int len) {
   for(i = 0; i < proxyclientmanager_size(); i++) {
     client = proxyclientmanager_get(i);
     if(client->inUse) {
-
-      /*
-       * TODO Known bug here where if the client->fd is closed because the
-       * developer kills that client or the client crashes, this write() will
-       * cause the proxyserver application to exit
-       */
       if (write(client->fd, message, len) < 0) {
         SYSLOG_ERR("ERROR writing to socket %d, closing socket", client->fd);
         proxyclientmanager_remove(client->fd);
