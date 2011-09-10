@@ -161,7 +161,10 @@ error_t proxyactivation_activate(const char *activationKey) {
     return FAIL;
   }
 
+
+
   if(activationInfo.resultCode == 0) {
+    libconfigio_write(proxycli_getConfigFilename(), CONFIGIO_PROXY_ACTIVATION_KEY, activationKey);
     return SUCCESS;
 
   } else {

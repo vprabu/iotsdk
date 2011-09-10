@@ -63,6 +63,9 @@
 /** Token to store the number of times this proxy app has been rebooted */
 #define CONFIGIO_PROXY_REBOOTS "PROXY_REBOOTS"
 
+/** The user's activation key for the proxy, given by the cloud */
+#define CONFIGIO_PROXY_ACTIVATION_KEY "USER_ACTIVATION_KEY"
+
 /** Token for host address of the cloud, i.e. "developers.peoplepowerco.com" */
 #define CONFIGIO_CLOUD_HOST "CLOUD_HOST"
 
