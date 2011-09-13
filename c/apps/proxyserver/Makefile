@@ -68,7 +68,7 @@ export HARDWARE_PLATFORM = INTEL
 OBJECTS_C = $(SOURCES_C:.c=.o)
 OBJECTS_CPP = $(SOURCES_CPP:.cpp=.o)
 
-LDEXTRA += -L../../lib -lhttpcomm -lpipecomm -lxml2 -lconfigio -lcurl -lpthread -lm
+LDEXTRA += -L../../lib -liotxml -lhttpcomm -lpipecomm -lxml2 -lconfigio -lcurl -lpthread -lm
 LDFLAGS += -Wl,-rpath,/opt/lib
 
 CFLAGS += -g3

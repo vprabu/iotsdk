@@ -30,6 +30,8 @@ SOURCES_C += ${IOTSDK}/c/iot/xml/generator/iotxmlgen.c
 SOURCES_C += ${IOTSDK}/c/iot/xml/parser/iotparser.c
 SOURCES_C += ${IOTSDK}/c/iot/xml/parser/iotcommandlisteners.c
 
+SOURCES_C += ${IOTSDK}/c/lib/3rdparty/cJSON/cJSON.c
+
 # Which test(s) are we trying to run
 SOURCES_CPP = 
 
@@ -51,6 +53,7 @@ CFLAGS += -I${IOTSDK}/c/iot/utils
 CFLAGS += -I${IOTSDK}/c/iot/xml
 CFLAGS += -I${IOTSDK}/c/iot/xml/generator
 CFLAGS += -I${IOTSDK}/c/iot/xml/parser
+CFLAGS += -I${IOTSDK}/c/lib/3rdparty/cJSON/
 
 # What 3rd party library headerse should we include. 
 # Version information is pulled from support/make/Makefile.include
@@ -69,7 +72,7 @@ export HARDWARE_PLATFORM = INTEL
 OBJECTS_C = $(SOURCES_C:.c=.o)
 OBJECTS_CPP = $(SOURCES_CPP:.cpp=.o)
 
-LDEXTRA += -L${IOTSDK}/c/lib -lhttpcomm -lpipecomm -lcJSON -lxml2 -lconfigio -lcurl -lpthread -lm
+LDEXTRA += -L${IOTSDK}/c/lib -liotxml -lhttpcomm -lpipecomm -lxml2 -lconfigio -lcurl -lpthread -lm
 LDFLAGS += -Wl,-rpath,/opt/lib
 
 CFLAGS += -g3
@@ -96,6 +99,7 @@ $(TARGET): .bin lib $(OBJECTS_C) $(OBJECTS_CPP)
 	@$(CPP) ${CFLAGS} $(LDFLAGS) -o ./bin/$(shell basename $@) ./bin/*.o $(LDEXTRA)
 
 lib:
+	@make -s -C ../../lib
 
 
 	
