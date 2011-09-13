@@ -5,7 +5,7 @@
 # @author Yvan Castilloux
 
 # create all libraries -> call all makefiles in subdirectories
-SUBTARGETS=libhttpcomm libpipecomm libconfigio
+SUBTARGETS=libhttpcomm libpipecomm libconfigio libiotxml
 
 all:
 	for d in $(SUBTARGETS); do \
