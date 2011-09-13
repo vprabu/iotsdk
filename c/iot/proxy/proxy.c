@@ -304,7 +304,7 @@ static void *_serverCommThread(void *params) {
     }
 
 
-    if (strnlen(msgFromServer, sizeof(msgFromServer)) > 0) {
+    if (strlen(msgFromServer) > 0) {
       msgFromServer[sizeof(msgFromServer) - 1] = '\0';
       if (strstr(msgFromServer, "CONT") != NULL) {
         /*
@@ -336,7 +336,7 @@ static void *_serverCommThread(void *params) {
       // Only poll (GET) if the server wants you to.
       _serverCommPoll(curlHandle, msgFromServer, sizeof(msgFromServer));
 
-      if (strnlen(msgFromServer, sizeof(msgFromServer)) > 0) {
+      if (strlen(msgFromServer) > 0) {
         msgFromServer[sizeof(msgFromServer) - 1] = '\0';
         if (strstr(msgFromServer, "CONT") != NULL) {
           poll = false;
@@ -402,7 +402,7 @@ static void _serverCommPush(CURLSH *curlHandle, char *message, char *response, i
         proxyconfig_getCertificate(), proxyconfig_getActivationToken(), wrappedMessage,
         wrappedMessageLen, response, responseMaxLen, params, NULL) == SUCCESS) {
 
-       serverRetry = (strnlen(response, responseMaxLen) == 0) || (strstr(response, "ERR") != NULL);
+       serverRetry = (strlen(response) == 0) || (strstr(response, "ERR") != NULL);
 
        if(!serverRetry) {
          SYSLOG_DEBUG("Send to server SUCCESS");
