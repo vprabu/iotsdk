@@ -100,7 +100,7 @@ error_t clientsocket_open(const char *serverName, int port) {
 
   bzero((char *) &serverAddress, sizeof(serverAddress));
   serverAddress.sin_family = AF_INET;
-  bcopy((char *) server->h_addr, (char *) &serverAddress.sin_addr.s_addr, server->h_length);
+  memcpy((char *) server->h_addr, (char *) &serverAddress.sin_addr.s_addr, server->h_length);
   serverAddress.sin_port = htons(port);
 
   SYSLOG_INFO("Connecting...");
