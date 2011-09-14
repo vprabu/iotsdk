@@ -71,7 +71,6 @@ OBJECTS_CPP = $(SOURCES_CPP:.cpp=.o)
 LDEXTRA += -L../../lib -liotxml -lhttpcomm -lpipecomm -lxml2 -lconfigio -lcurl -lpthread -lm
 LDFLAGS += -Wl,-rpath,/opt/lib
 
-CFLAGS += -g3
 CFLAGS += -Os
 CFLAGS += -Wall
 
