@@ -119,6 +119,10 @@ long proxyconfig_getUploadIntervalSec() {
   uploadInterval = sUploadIntervalSec;
   pthread_mutex_unlock(&sUploadIntervalMutex);
 
+  if(uploadInterval == 0) {
+    return PROXY_DEFAULT_UPLOAD_INTERVAL_SEC;
+  }
+
   return uploadInterval;
 }
 
@@ -127,6 +131,10 @@ long proxyconfig_getUploadIntervalSec() {
  * @param uploadIntervalSec
  */
 void proxyconfig_setUploadIntervalSec(long uploadIntervalSec) {
+  if(uploadIntervalSec == 0) {
+    return;
+  }
+
   pthread_mutex_lock(&sUploadIntervalMutex);
   sUploadIntervalSec = uploadIntervalSec;
   pthread_mutex_unlock(&sUploadIntervalMutex);
