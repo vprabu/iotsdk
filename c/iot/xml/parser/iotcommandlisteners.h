@@ -41,6 +41,11 @@
 #define TOTAL_COMMAND_LISTENERS 10
 #endif
 
+/** Number of characters to match in the 'type' attribute of a command */
+#ifndef TYPE_ATTRIBUTE_CHARS_TO_MATCH
+#define TYPE_ATTRIBUTE_CHARS_TO_MATCH 3
+#endif
+
 /***************** Public Prototypes ****************/
 error_t iotcommandlisteners_broadcast(command_t *cmd);
 

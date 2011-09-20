@@ -39,6 +39,7 @@
 
 #include <errno.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "iotapi.h"
 #include "iotdebug.h"
@@ -50,6 +51,8 @@ static struct {
 
   commandlistener_f l;
 
+  char type[TYPE_ATTRIBUTE_CHARS_TO_MATCH];
+
   bool inUse;
 
 } listeners[TOTAL_COMMAND_LISTENERS];
@@ -60,9 +63,10 @@ static struct {
  * Add a listener to receive parsed commands
  *
  * @param commandlistener_f Function pointer to a function(command_t cmd)
+ * @param type Type attribute to listen for, "set", "delete", "discover", etc.
  * @return SUCCESS if the listener was added
  */
-error_t iotxml_addCommandListener(commandlistener_f l) {
+error_t iotxml_addCommandListener(commandlistener_f l, char *type) {
   int i;
 
   for(i = 0; i < TOTAL_COMMAND_LISTENERS; i++) {
@@ -75,6 +79,7 @@ error_t iotxml_addCommandListener(commandlistener_f l) {
   for(i = 0; i < TOTAL_COMMAND_LISTENERS; i++) {
     if(!listeners[i].inUse) {
       listeners[i].inUse = true;
+      strncpy(listeners[i].type, type, TYPE_ATTRIBUTE_CHARS_TO_MATCH);
       listeners[i].l = l;
       return SUCCESS;
     }
@@ -105,13 +110,16 @@ error_t iotxml_removeCommandListener(commandlistener_f l) {
  * Broadcast a command to all listeners
  * @param msg Message to broadcast
  * @param len Length of the message
+ * @param type Type attribute of the command describing the action
  */
 error_t iotcommandlisteners_broadcast(command_t *cmd) {
   int i;
 
   for(i = 0; i < TOTAL_COMMAND_LISTENERS; i++) {
     if(listeners[i].inUse) {
-      listeners[i].l(cmd);
+      if(strncmp(listeners[i].type, cmd->commandType, TYPE_ATTRIBUTE_CHARS_TO_MATCH) == 0) {
+        listeners[i].l(cmd);
+      }
     }
   }
 

@@ -48,6 +48,7 @@
 enum {
   IOT_COMMAND_NAME_STRING_SIZE = 16,
   IOT_COMMAND_VALUE_STRING_SIZE = 256,
+  IOT_COMMAND_TYPE_STRING_SIZE = 10,
 };
 
 /**
@@ -95,6 +96,9 @@ typedef struct command_t {
 
   /** Destination device ID */
   char deviceId[EUI64_STRING_SIZE];
+
+  /** Type attribute, i.e. "set", "delete", "discover", etc. */
+  char commandType[IOT_COMMAND_TYPE_STRING_SIZE];
 
   /** Index # in ascii */
   char asciiIndex;
@@ -146,7 +150,7 @@ error_t iotxml_sendResult(int commandId, result_code_e result);
 
 error_t iotxml_parse(const char *xml, int len);
 
-error_t iotxml_addCommandListener(commandlistener_f l);
+error_t iotxml_addCommandListener(commandlistener_f l, char *type);
 
 error_t iotxml_removeCommandListener(commandlistener_f l);
 

@@ -192,8 +192,8 @@ void application_receive(const char *msg, int len) {
  */
 static void *_proxyAgentThread(void *params) {
 
-  // Listen for commands
-  iotxml_addCommandListener(&_doCommand);
+  // Listen for 'set' commands from the server
+  iotxml_addCommandListener(&_doCommand, "set");
 
   // Main loop
   while (!terminate) {

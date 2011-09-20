@@ -175,8 +175,8 @@ int main(int argc, char *argv[]) {
 
   printf("Running gadget agent\n");
 
-  // Listen for commands
-  iotxml_addCommandListener(&gadgetcontrol_execute);
+  // Listen for all commands of type 'set'
+  iotxml_addCommandListener(&gadgetcontrol_execute, "set");
 
   while(!gTerminate) {
     struct timeval curTime = { 0, 0 };

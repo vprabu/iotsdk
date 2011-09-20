@@ -151,6 +151,8 @@ static void _iotparser_xml_startElementHandler(void *ctx, const xmlChar *name, c
         command->asciiIndex = *((char *) value);
 
       } else if(strcmp(attr, IOTPARSER_ATTR_COMMANDTYPE) == 0) {
+        strncpy(command->commandType, value, IOT_COMMAND_TYPE_STRING_SIZE);
+
         // Command types always appear before command names.
         // If this command happens to not have a name, then the default
         // is to make the command name the same as the command type.
