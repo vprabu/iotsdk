@@ -166,11 +166,11 @@ static struct timeval lastMeasurementTime;
 int main(int argc, char *argv[]) {
   SYSLOG_INFO("*************** GADGET Agent ***************");
 
-  // Open a socket to the proxy server
+  // Repetitively attempt to open a socket to the proxy server
   // DEFAULT_PROXY_PORT comes from proxyserver.h
-  if(clientsocket_open("localhost", DEFAULT_PROXY_PORT) != SUCCESS) {
+  while(clientsocket_open("localhost", DEFAULT_PROXY_PORT) != SUCCESS) {
     SYSLOG_DEBUG("[gadget] Couldn't open client socket");
-    exit(1);
+    sleep(5);
   }
 
   printf("Running gadget agent\n");
