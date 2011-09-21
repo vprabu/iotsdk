@@ -168,7 +168,7 @@ int main(int argc, char *argv[]) {
 
   // Repetitively attempt to open a socket to the proxy server
   // DEFAULT_PROXY_PORT comes from proxyserver.h
-  while(clientsocket_open("localhost", DEFAULT_PROXY_PORT) != SUCCESS) {
+  while(clientsocket_open("127.0.0.1", DEFAULT_PROXY_PORT) != SUCCESS) {
     SYSLOG_DEBUG("[gadget] Couldn't open client socket");
     sleep(5);
   }
