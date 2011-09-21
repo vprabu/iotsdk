@@ -33,6 +33,8 @@ CFLAGS+= -g -pg
 endif
 ARFLAG = rcs
 
+CFLAGS += -Wall
+
 DYNLIB_EXTENSION = so
 STATLIB_EXTENSION = a
 

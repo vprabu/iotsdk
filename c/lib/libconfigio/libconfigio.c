@@ -70,12 +70,9 @@ error_t libconfigio_write(const char* fileName, const char* token, const char* v
     FILE *configFd = NULL;
     FILE *tmpConfigFd = NULL; // of back up file
     char line[LINE_MAX];
-    char *eofStatus;
-    char *tmpString;
     long filePos = -1; ///where the current value is located
     long eofPos = -1; ///where the end of the file is
     char currentValue[LINE_MAX];
-    int result = 0;
     char tmpFileName[256]; ///back up file name when copying the file
 
     assert(fileName);
@@ -235,7 +232,7 @@ error_t libconfigio_write(const char* fileName, const char* token, const char* v
 long libconfigio_read(const char* fileName, const char* token, char* value, int valueSize)
 {
     long retVal = -1;
-    FILE *configFd;
+    FILE *configFd = NULL;
     char line[LINE_MAX];
     char *eofStatus;
     char *tmpString;

@@ -259,7 +259,6 @@ int libhttpcomm_sendMsg(CURLSH * shareCurlHandle, CURLoption httpMethod, const c
     struct HttpIoInfo outBoundCommInfo;
     struct HttpIoInfo inBoundCommInfo;
     struct curl_slist *slist = NULL;
-    char *strPtr = NULL;
     double connectDuration = 0.0;
     double transferDuration = 0.0;
     double nameResolvingDuration = 0.0;
@@ -464,7 +463,6 @@ int libhttpcomm_getFile(CURLSH * shareCurlHandle, const char *url, const char *s
 {
     CURL * curlHandle;
     CURLcode curlResult;
-    char tempString[PATH_MAX];
     char errorBuffer[CURL_ERROR_SIZE];
     struct curl_slist *slist = NULL;
     double connectDuration = 0.0;
@@ -593,7 +591,6 @@ int libhttpcomm_sendFile(const char *url, const char *sslCertPath, const char *a
     char errorBuffer[CURL_ERROR_SIZE];
     int fileSize = 0;
     struct HttpIoInfo inBoundCommInfo;
-    char *strPtr = NULL;
     struct curl_slist *slist = NULL;
     struct stat fileStats;
     double connectDuration = 0.0;

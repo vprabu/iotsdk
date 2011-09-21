@@ -19,6 +19,7 @@ ARFLAG = rcs
 
 DYNLIB_EXTENSION = so
 STATLIB_EXTENSION = a
+CFLAGS += -Wall
 
 # Link Flag
 #LINK_FLAG = -L$(RESULT_DIR) -shared -Wl,-soname,$(LIB_NAME).$(DYNLIB_EXTENSION) -lc -lm -lpthread
