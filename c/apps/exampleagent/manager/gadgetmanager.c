@@ -146,7 +146,7 @@ void gadgetmanager_garbageCollection() {
       if ((curTime.tv_sec - devices[i].lastTouchTime.tv_sec) >= GADGET_DEATH_PERIOD_SEC) {
         SYSLOG_INFO("[gadget] Killing device at IP %s", devices[i].ip);
 
-        // Remove the device from the ESP
+        // Alert that the device is gone
         iotxml_alertDeviceIsGone(devices[i].ip);
 
         bzero(&devices[i], sizeof(gadget_t));
