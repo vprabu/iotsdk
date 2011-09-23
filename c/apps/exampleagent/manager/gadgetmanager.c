@@ -68,7 +68,7 @@ error_t gadgetmanager_add(gadget_t *gadget) {
       SYSLOG_INFO("[gadget] Adding new device at ip %s!", gadget->ip);
 
       // Always add the device to the ESP
-      iotxml_addDevice(gadget->ip, GADGET_DEVICE_TYPE);
+      iotxml_addDevice(gadget->uuid, GADGET_DEVICE_TYPE);
 
       memcpy(&devices[i], gadget, sizeof(gadget_t));
       devices[i].inUse = true;
@@ -147,7 +147,7 @@ void gadgetmanager_garbageCollection() {
         SYSLOG_INFO("[gadget] Killing device at IP %s", devices[i].ip);
 
         // Alert that the device is gone
-        iotxml_alertDeviceIsGone(devices[i].ip);
+        iotxml_alertDeviceIsGone(devices[i].uuid);
 
         bzero(&devices[i], sizeof(gadget_t));
       }
