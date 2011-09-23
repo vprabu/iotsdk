@@ -136,6 +136,10 @@ typedef void (*commandlistener_f)(command_t *);
 error_t application_send(const char *msg, int len);
 
 /***************** API ****************/
+error_t iotxml_addDevice(const char *deviceId, int deviceType);
+
+error_t iotxml_alertDeviceIsGone(const char *deviceId);
+
 int iotxml_newMsg(char *destMsg, int maxSize);
 
 int iotxml_addString(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, char asciiParamIndex, const char *paramValue);

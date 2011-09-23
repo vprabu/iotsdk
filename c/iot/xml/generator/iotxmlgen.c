@@ -225,3 +225,30 @@ error_t iotxml_sendResult(int commandId, result_code_e result) {
   return application_send(xmlResult, strlen(xmlResult));
 }
 
+/**
+ * Declare to the ESP that a new device is available to control
+ * @param deviceId The unique ID of the device
+ * @param deviceType The device type
+ * @return SUCCESS if we will declare the device to the server
+ */
+error_t iotxml_addDevice(const char *deviceId, int deviceType) {
+  char xml[IOTGEN_ADD_REMOVE_XML_SIZE];
+  bzero(xml, IOTGEN_ADD_REMOVE_XML_SIZE);
+  snprintf(xml, IOTGEN_ADD_REMOVE_XML_SIZE, "<add deviceId=\"%s\" deviceType=\"%d\" />", deviceId, deviceType);
+  SYSLOG_INFO("Adding device %s of type %d", deviceId, deviceType);
+  return application_send(xml, strlen(xml));
+}
+
+/**
+ * Alert to the ESP that a device can no longer be contacted and may not be in
+ * control of the network
+ * @param deviceId The unique ID of the device
+ * @return SUCCESS if we will declare the device is not present to the server
+ */
+error_t iotxml_alertDeviceIsGone(const char *deviceId) {
+  char xml[IOTGEN_ADD_REMOVE_XML_SIZE];
+  bzero(xml, IOTGEN_ADD_REMOVE_XML_SIZE);
+  snprintf(xml, IOTGEN_ADD_REMOVE_XML_SIZE, "<alert deviceId=\"%s\" type=\"no_read\" />", deviceId);
+  SYSLOG_INFO("Alerting that device %s is gone", deviceId);
+  return application_send(xml, strlen(xml));
+}

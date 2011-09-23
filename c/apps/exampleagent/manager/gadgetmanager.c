@@ -66,6 +66,10 @@ error_t gadgetmanager_add(gadget_t *gadget) {
   for(i = 0; i < GADGET_MAX_DEVICES; i++) {
     if(!devices[i].inUse) {
       SYSLOG_INFO("[gadget] Adding new device at ip %s!", gadget->ip);
+
+      // Always add the device to the ESP
+      iotxml_addDevice(gadget->ip, GADGET_DEVICE_TYPE);
+
       memcpy(&devices[i], gadget, sizeof(gadget_t));
       devices[i].inUse = true;
       gadgetagent_refreshDevices();
@@ -141,6 +145,10 @@ void gadgetmanager_garbageCollection() {
     if(devices[i].inUse) {
       if ((curTime.tv_sec - devices[i].lastTouchTime.tv_sec) >= GADGET_DEATH_PERIOD_SEC) {
         SYSLOG_INFO("[gadget] Killing device at IP %s", devices[i].ip);
+
+        // Remove the device from the ESP
+        iotxml_alertDeviceIsGone(devices[i].ip);
+
         bzero(&devices[i], sizeof(gadget_t));
       }
     }
