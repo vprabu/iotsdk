@@ -70,7 +70,7 @@ int h2swrapper_wrap(char *dest, char *message, int destSize) {
 
   bytesWritten += snprintf(dest, destSize - bytesWritten,
       "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
-        "<h2s ver=\"1\" hubId=\"%s\" seq=\"%u\">", localAddress, sequenceNum);
+        "<h2s ver=\"2\" hubId=\"%s\" seq=\"%u\">", localAddress, sequenceNum);
 
   strncpy(dest + bytesWritten, message, destSize - bytesWritten);
 
