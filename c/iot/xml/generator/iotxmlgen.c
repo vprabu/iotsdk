@@ -148,9 +148,11 @@ int iotxml_addString(char *dest, int maxSize, const char *deviceId, int deviceTy
         " index=\"%c\"", asciiParamIndex);
   }
 
-  if(strlen(multiplier) > 0) {
-    offset += snprintf(dest + offset, maxSize - offset,
-        " multiplier=\"%s\"", multiplier);
+  if(multiplier != NULL) {
+    if(strlen(multiplier) > 0) {
+      offset += snprintf(dest + offset, maxSize - offset,
+          " multiplier=\"%s\"", multiplier);
+    }
   }
 
   // Add the value
