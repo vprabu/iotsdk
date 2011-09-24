@@ -279,6 +279,7 @@ static void _sendHeartbeat() {
     deviceType,
     IOT_PARAM_PROFILE,
     PARAM_NAME_FIRMWARE_VERSION,
+    NULL,
     0,
     firmwareVersion);
 
@@ -288,6 +289,7 @@ static void _sendHeartbeat() {
     deviceType,
     IOT_PARAM_PROFILE,
     PARAM_NAME_ALIVE_TIME,
+    NULL,
     0,
     aliveTime);
 
@@ -297,6 +299,7 @@ static void _sendHeartbeat() {
     deviceType,
     IOT_PARAM_PROFILE,
     PARAM_NAME_REBOOTS,
+    NULL,
     0,
     reboots);
 
@@ -306,6 +309,7 @@ static void _sendHeartbeat() {
     deviceType,
     IOT_PARAM_PROFILE,
     PARAM_NAME_UPLOAD_INTERVAL,
+    NULL,
     0,
     (int) proxyconfig_getUploadIntervalSec());
 

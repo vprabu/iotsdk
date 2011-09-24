@@ -142,9 +142,9 @@ error_t iotxml_alertDeviceIsGone(const char *deviceId);
 
 int iotxml_newMsg(char *destMsg, int maxSize);
 
-int iotxml_addString(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, char asciiParamIndex, const char *paramValue);
+int iotxml_addString(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, const char *multiplier, char asciiParamIndex, const char *paramValue);
 
-int iotxml_addInt(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, char asciiParamIndex, int paramValue);
+int iotxml_addInt(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, const char *multiplier, char asciiParamIndex, int paramValue);
 
 error_t iotxml_send(char *destMsg, int maxSize);
 

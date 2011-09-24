@@ -90,6 +90,7 @@ void gadgetheartbeat_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_PROFILE,
             "internalUrl",
+            NULL,
             0,
             focusedGadget->ip);
 
@@ -98,6 +99,7 @@ void gadgetheartbeat_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_PROFILE,
             "model",
+            NULL,
             0,
             focusedGadget->model);
 
@@ -106,6 +108,7 @@ void gadgetheartbeat_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_PROFILE,
             "firmware",
+            NULL,
             0,
             focusedGadget->firmwareVersion);
       }

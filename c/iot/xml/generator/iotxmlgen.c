@@ -111,7 +111,7 @@ error_t iotxml_newMsg(char *destMsg, int maxSize) {
  * @param paramValue Param value string
  * @return the size of the string written to the destination pointer
  */
-int iotxml_addString(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, char asciiParamIndex, const char *paramValue) {
+int iotxml_addString(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, const char *multiplier, char asciiParamIndex, const char *paramValue) {
   int offset = 0;
 
   // First check if we need a new param block
@@ -148,6 +148,11 @@ int iotxml_addString(char *dest, int maxSize, const char *deviceId, int deviceTy
         " index=\"%c\"", asciiParamIndex);
   }
 
+  if(strlen(multiplier) > 0) {
+    offset += snprintf(dest + offset, maxSize - offset,
+        " multiplier=\"%s\"", multiplier);
+  }
+
   // Add the value
   offset += snprintf(dest + offset, maxSize - offset,
       ">%s</param>", paramValue);
@@ -175,10 +180,10 @@ int iotxml_addString(char *dest, int maxSize, const char *deviceId, int deviceTy
  * @param paramValue Param value integer
  * @return the size of the string written to the destination pointer
  */
-int iotxml_addInt(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, char asciiParamIndex, int paramValue) {
+int iotxml_addInt(char *dest, int maxSize, const char *deviceId, int deviceType, param_type_e paramType, const char *paramName, const char *multiplier, char asciiParamIndex, int paramValue) {
   char value[IOTGEN_NUMERIC_STRING_SIZE];
   snprintf(value, IOTGEN_NUMERIC_STRING_SIZE, "%d", paramValue);
-  return iotxml_addString(dest, maxSize, deviceId, deviceType, paramType, paramName, asciiParamIndex, value);
+  return iotxml_addString(dest, maxSize, deviceId, deviceType, paramType, paramName, multiplier, asciiParamIndex, value);
 }
 
 /**

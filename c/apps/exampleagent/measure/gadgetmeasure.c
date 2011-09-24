@@ -186,6 +186,7 @@ void gadgetmeasure_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_MEASURE,
             "current",
+            "m",
             0,
             buffer);
 
@@ -196,6 +197,7 @@ void gadgetmeasure_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_MEASURE,
             "power",
+            "1",
             0,
             buffer);
 
@@ -206,6 +208,7 @@ void gadgetmeasure_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_MEASURE,
             "volts",
+            "1",
             0,
             buffer);
 
@@ -216,6 +219,7 @@ void gadgetmeasure_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_MEASURE,
             "energy",
+            "k",
             0,
             buffer);
 
@@ -225,6 +229,7 @@ void gadgetmeasure_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_MEASURE,
             "powerFactor",
+            NULL,
             0,
             focusedGadget->powerFactor);
 
@@ -234,6 +239,7 @@ void gadgetmeasure_send() {
             GADGET_DEVICE_TYPE,
             IOT_PARAM_MEASURE,
             "outletStatus",
+            NULL,
             0,
             focusedGadget->isOn);
 
