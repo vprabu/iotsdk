@@ -167,6 +167,7 @@ void gadgetmeasure_send() {
         // I didn't want to fill up our buffer here, so each gadget gets
         // its own message and we toss it like a hot potato
         iotxml_newMsg(myMsg, sizeof(myMsg));
+        offset = 0;
 
         // We have to print the floats / doubles to a string in order
         // to format it as we want to see it at the server. That's why
