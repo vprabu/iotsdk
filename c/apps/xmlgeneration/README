@@ -1,0 +1,7 @@
+
+This example source code demonstrates how to call functions that generate
+XML, to be used in communication with cloud services.  It simply prints
+the XML to the screen.
+
+Makefile uses the environment variable ${IOTSDK} to define where
+the iotsdk directory lives on your machine.
