@@ -141,6 +141,8 @@ void gadgetmanager_garbageCollection() {
   int i;
   struct timeval curTime = { 0, 0 };
 
+  gettimeofday(&curTime, NULL);
+
   for(i = 0; i < GADGET_MAX_DEVICES; i++) {
     if(devices[i].inUse) {
       if ((curTime.tv_sec - devices[i].lastTouchTime.tv_sec) >= GADGET_DEATH_PERIOD_SEC) {
