@@ -55,6 +55,7 @@
 #include <libxml/parser.h>
 
 #include "libconfigio.h"
+#include "libpipecomm.h"
 
 #include "ioterror.h"
 #include "iotdebug.h"
@@ -217,7 +218,7 @@ void _proxyserver_listener(const char *message, int len) {
   for(i = 0; i < proxyclientmanager_size(); i++) {
     client = proxyclientmanager_get(i);
     if(client->inUse) {
-      if (write(client->fd, message, len) < 0) {
+      if (libpipecomm_write(client->fd, message, len) < 0) {
         SYSLOG_ERR("ERROR writing to socket %d, closing socket", client->fd);
         proxyclientmanager_remove(client->fd);
         close(client->fd);

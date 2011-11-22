@@ -49,6 +49,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#include "libpipecomm.h"
 
 #include "iotdebug.h"
 #include "ioterror.h"
@@ -166,7 +167,7 @@ static void *_clientCommThread(void *params) {
   while (!gTerminate) {
     memset(inboundMsg, 0, sizeof(inboundMsg));
 
-    if(read(socketFd, inboundMsg, CLIENTSOCKET_INBOUND_MSGSIZE) > 0) {
+    if(libpipecomm_read(socketFd, inboundMsg, CLIENTSOCKET_INBOUND_MSGSIZE) > 0) {
       SYSLOG_DEBUG("[client] Received: %s", inboundMsg);
       application_receive(inboundMsg, strlen(inboundMsg));
     }

@@ -38,7 +38,7 @@
 #include "ioterror.h"
 
 enum {
-  CLIENTSOCKET_INBOUND_MSGSIZE = 512,
+  CLIENTSOCKET_INBOUND_MSGSIZE = 1024,
 };
 
 /** The developer must implement this function in the application */
