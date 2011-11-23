@@ -6,7 +6,7 @@
 # Three spellings: all caps, intercapped, all lower
 # Change "Gadget" into "MyDeviceName", whatever your device name is.
 
-SED_ARGS='-e s@GADGET@MYDEVICENAME@g -e s@Rtoa@MyDeviceName@g -e s@rtoa@mydevicename@g'
+SED_ARGS='-e s@GADGET@MYDEVICENAME@g -e s@Gadget@MyDeviceName@g -e s@gadget@mydevicename@g'
 
 # That's it.  The next two commands take care of the rest for you.
 
