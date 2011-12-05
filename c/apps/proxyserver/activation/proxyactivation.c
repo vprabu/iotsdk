@@ -157,11 +157,11 @@ error_t proxyactivation_activate(const char *activationKey) {
 
   libhttpcomm_sendMsg(NULL, CURLOPT_POST, url, NULL, NULL, oBuffer, strlen(oBuffer), rxBuffer, sizeof(rxBuffer), params, NULL);
 
+  printf("Server returned: \n%s\n", rxBuffer);
+
   if(0 != xmlSAXUserParseMemory(&saxHandler, &activationInfo, rxBuffer, strlen(rxBuffer))) {
     return FAIL;
   }
-
-
 
   if(activationInfo.resultCode == 0) {
     libconfigio_write(proxycli_getConfigFilename(), CONFIGIO_PROXY_ACTIVATION_KEY, activationKey);
