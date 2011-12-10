@@ -243,6 +243,7 @@ static void *_serverCommThread(void *params) {
   char msgFromServer[PROXY_MAX_MSG_LEN];
   bool poll = true;
   int msgLen = 0;
+  int forcedPushLoops = 0;
   bool sentEmptyMsg = false;
   CURLSH *curlHandle = NULL; // curl handle shared across connections for DNS caching
 
@@ -304,9 +305,30 @@ static void *_serverCommThread(void *params) {
     }
 
 
+    if(forcedPushLoops > 0) {
+      // Keep looping until we're out
+      forcedPushLoops--;
+    }
+
     if (strlen(msgFromServer) > 0) {
       msgFromServer[sizeof(msgFromServer) - 1] = '\0';
-      if (strstr(msgFromServer, "CONT") != NULL) {
+
+      if(strstr(msgFromServer, "command") != NULL) {
+         /*
+         * We received a valid command from the server. Force the proxy to
+         * send updates for the next several iterations without waiting, as if
+         * we are handling a CONT request. Do not poll the server using GET.
+         */
+        poll = false;
+        forcedPushLoops = PROXY_MAX_PUSHES_ON_RECEIVED_COMMAND;
+
+      } else if (forcedPushLoops > 0) {
+        /**
+         * Keep looping as if we received a CONT
+         */
+        poll = false;
+
+      } else if (strstr(msgFromServer, "CONT") != NULL) {
         /*
          * When the server sends a CONT signal, it is telling the hub to close
          * the persistent connection (which is the GET connection) and start
@@ -321,6 +343,7 @@ static void *_serverCommThread(void *params) {
          * or when pushing data becomes a priority.
          */
         poll = true;
+
       }
 
       proxylisteners_broadcast(msgFromServer, strlen(msgFromServer));
@@ -343,6 +366,10 @@ static void *_serverCommThread(void *params) {
 
         } else if (strstr(msgFromServer, "ACK") != NULL) {
           poll = true;
+
+        } else if(strstr(msgFromServer, "command") != NULL) {
+          poll = false;
+          forcedPushLoops = PROXY_MAX_PUSHES_ON_RECEIVED_COMMAND;
         }
 
         proxylisteners_broadcast(msgFromServer, strlen(msgFromServer));
