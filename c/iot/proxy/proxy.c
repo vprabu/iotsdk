@@ -349,7 +349,7 @@ static void *_serverCommThread(void *params) {
       proxylisteners_broadcast(msgFromServer, strlen(msgFromServer));
 
       if (sentEmptyMsg == true) {
-        sleep(1);
+        sleep(5);
       }
     }
 
