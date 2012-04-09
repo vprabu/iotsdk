@@ -23,7 +23,7 @@ public class Computer implements CommandListener {
   /** 
    * Constructor
    * 
-   * Open a persisten connection
+   * Open a persistent connection
    * 
    * Send a measurement declaring the computer is on
    */

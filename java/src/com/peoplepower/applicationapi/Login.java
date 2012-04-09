@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -57,20 +58,22 @@ public class Login {
    */
   public Login(String username, String password) {
     try {
-      HttpURLConnection connection = null;
       URL serverAddress = null;
       SAXParserFactory factory = SAXParserFactory.newInstance();
       SAXParser saxParser = factory.newSAXParser();
       
-      serverAddress = new URL("http://" + Server.DOMAIN + Server.APPLICATIONURI
+      serverAddress = new URL(Server.getDomain() + Server.APPLICATIONURI
           + "/login/" + username + "/" + password + "/14/1");
 
       // Set up the initial connection
-      connection = (HttpURLConnection) serverAddress.openConnection();
+      System.out.println("Server address: " + serverAddress);
+      HttpURLConnection connection = (HttpURLConnection) serverAddress.openConnection();
+      
       connection.setRequestMethod("GET");
       connection.setDoOutput(true);
       connection.setReadTimeout(10000);
       connection.connect();
+      
       
       // Parse the XML using the DefaultHandler above
       saxParser.parse(connection.getInputStream(), handler);

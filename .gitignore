@@ -15,4 +15,5 @@ unittest*
 *.class
 *.jar
 *.war
-
+.classpath
+.project
