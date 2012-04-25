@@ -1,16 +1,14 @@
 package com.peoplepower;
 
-import java.net.HttpURLConnection;
-import java.net.URLConnection;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class Server {
 
   /** SSL is not yet implemented in the Java IOTSDK */
   public static final boolean USE_SSL = false;
   
-  public static final String SSL_PORT = "9443";
+  public static final String DEVICE_SSL_PORT = "9443";
+  
+  public static final String APPLICATION_SSL_PORT = "8443";
   
   public static final String UNSECURE_PORT = "80";
   
@@ -23,22 +21,6 @@ public class Server {
 	public static final String APPLICATIONURI = "/espapi/rest";
 	
 	public static final String DEVICEURI = "/deviceio/ml";
-	
-	public static String getDomain() {
-	  if(USE_SSL) {
-	    return "https://" + DOMAIN + ":" + SSL_PORT;
-	  } else {
-	    return "http://" + DOMAIN;
-	  }
-	}
-	
-	public static String getPort() {
-	  if(USE_SSL) {
-	    return SSL_PORT;
-	  } else {
-	    return UNSECURE_PORT;
-	  }
-	}
 	
 	public static String getPrefix() {
 	  if(USE_SSL) {

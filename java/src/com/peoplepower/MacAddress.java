@@ -10,6 +10,28 @@ public class MacAddress {
   /** MAC address used when the program started */
   private static String mac = null;
   
+  /** Proxy ID to override the mac address if we want */
+  private static String proxyId = null;
+  
+  /**
+   * @return the currently defined proxy ID
+   */
+  public static String getProxyId() {
+    if(proxyId == null) {
+      return getMacAddress();
+    }
+    
+    return proxyId;
+  }
+  
+  /**
+   * Override the proxy ID with your own
+   * @param id
+   */
+  public static void setProxyId(String id) {
+    proxyId = id;
+  }
+  
   /**
    * Get a MAC address from this computer
    * @return MAC address

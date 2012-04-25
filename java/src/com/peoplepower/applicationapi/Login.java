@@ -62,7 +62,7 @@ public class Login {
       SAXParserFactory factory = SAXParserFactory.newInstance();
       SAXParser saxParser = factory.newSAXParser();
       
-      serverAddress = new URL(Server.getDomain() + Server.APPLICATIONURI
+      serverAddress = new URL("http://" + Server.DOMAIN + Server.APPLICATIONURI
           + "/login/" + username + "/" + password + "/14/1");
 
       // Set up the initial connection

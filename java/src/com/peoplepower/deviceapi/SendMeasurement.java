@@ -69,7 +69,8 @@ public class SendMeasurement {
       
       connection.disconnect();
       rd.close();
-      
+
+      System.out.println("Response: " + sb.toString());
       List<Command> commands = new CommandParser().extractCommands(sb.toString());
       SendAck.ackMultipleCommands(commands);
       
@@ -89,7 +90,7 @@ public class SendMeasurement {
   private static String convertToXml(List<Measurement> measurements) {
     
     String xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
-    xml += "<h2s ver=\"2\" proxyId=\"" + MacAddress.getMacAddress() + "\" seq=\"" + MessageSequenceNumber.nextSequenceNumber() + "\">";
+    xml += "<h2s ver=\"2\" proxyId=\"" + MacAddress.getProxyId() + "\" seq=\"" + MessageSequenceNumber.nextSequenceNumber() + "\">";
     
     Measurement focusedMeasurement;
     Param focusedParameter;
