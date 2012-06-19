@@ -5,6 +5,7 @@ utbuild.log
 # Any compiled python files
 *.pyc
 *.pyo
+.pydevproject
 # Any compiled C files
 *.o
 *.so
